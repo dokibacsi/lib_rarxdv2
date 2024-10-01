@@ -5,6 +5,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use function Laravel\Prompts\password;
+
 return new class extends Migration
 {
     /**
@@ -16,17 +18,16 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('password')->default();
+            $table->boolean('permission')->default(1);
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
+
+        User::create(['name' => 'Vale', 'email'=>'valisus@susWTF.com', 'password' => "Val123", 'permission' => 0]);
+        $users = User::factory()->count(100)->create();
         
-        $users = User::factory()->count(1000)->create();
-        /* User::create(['name' => 'Dani', 'email' => 'danialegjobb@zoomail.eu']);
-        User::create(['name' => 'Valentin', 'email' => 'valent@zoomail.eu']);
-        User::create(['name' => 'Gery', 'email' => 'magasgeri@zoomail.eu']);
-        User::create(['name' => 'I', 'email' => 'imintflower@zoomail.eu']);
-        User::create(['name' => 'Ádám', 'email' => 'bledyakiraly@zoomail.eu']); */
     }
 
     /**

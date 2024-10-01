@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Copy;
 use Illuminate\Http\Request;
 
-class CopyController extends Controller
+class CopyController
 {
     /**
      * Display a listing of the resource.
@@ -23,7 +23,9 @@ class CopyController extends Controller
     {
         $copy = new Copy();
         $copy->book_id = $request->book_id;
-        $copy->user_id = $request->user_id;
+        $copy->hardcovered = $request->hardcovered;
+        $copy->publication = $request->publication;
+        $copy->status = $request->status;
         $copy->save();
     }
 
@@ -43,7 +45,9 @@ class CopyController extends Controller
     {
         $copy = Copy::find($id);
         $copy->book_id = $request->book_id;
-        $copy->user_id = $request->user_id;
+        $copy->hardcovered = $request->hardcovered;
+        $copy->publication = $request->publication;
+        $copy->status = $request->status;
         $copy->save();
     }
 

@@ -15,17 +15,20 @@ return new class extends Migration
         Schema::create('copies', function (Blueprint $table) {
             $table->id();
             $table->foreignId('book_id')->references('id')->on('books');
-            $table->foreignId('user_id')->references('id')->on('users');
+            //puha: 0, kemény: 1;
+            $table->boolean('hardcovered')->default(1);
+            $table->year('publication');
+            $table->smallInteger('status')->default(0);
             $table->timestamps();
         });
 
-        $copies = Copy::factory()->count(1000)->create();
+       $copies = Copy::factory()->count(100)->create();
 
-        /* Copy::create(['book_id' => 3, 'user_id' => 2]);
-        Copy::create(['book_id' => 1, 'user_id' => 5]);
-        Copy::create(['book_id' => 2, 'user_id' => 1]);
-        Copy::create(['book_id' => 5, 'user_id' => 2]);
-        Copy::create(['book_id' => 4, 'user_id' => 4]); */
+        /* Copy::create(['book_id' => 3, 'publication' => '2004']);
+        Copy::create(['book_id' => 1, 'publication' => '2006']);
+        Copy::create(['book_id' => 2, 'publication' => '2001']);
+        Copy::create(['book_id' => 5, 'publication' => '2004']);
+        Copy::create(['book_id' => 4, 'publication' => '2003']); */
     }
 
     /**

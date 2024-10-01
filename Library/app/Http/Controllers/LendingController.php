@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Book;
+use App\Models\Lending;
 use Illuminate\Http\Request;
 
-class BookController
+class LendingController
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $books = response()->json(Book::all());
-        return $books;
+        $lendings = response()->json(Lending::all());
+        return $lendings;
     }
 
     /**
@@ -21,10 +21,11 @@ class BookController
      */
     public function store(Request $request)
     {
-        $book = new Book();
-        $book->author = $request->author;
-        $book->title = $request->title;
-        $book->save();
+        $lending = new Lending();
+        $lending->copy_id = $request->copy_id;
+        $lending->user_id = $request->user_id;
+        $lending->start = $request->start;
+        $lending->save();
     }
 
     /**
@@ -32,8 +33,8 @@ class BookController
      */
     public function show(string $id)
     {
-        $books = response()->json(Book::find($id));
-        return $books;
+        $lendings = response()->json(Lending::find($id));
+        return $lendings;
     }
 
     /**
@@ -41,10 +42,11 @@ class BookController
      */
     public function update(Request $request, string $id)
     {
-        $book = Book::find($id);
-        $book->author = $request->author;
-        $book->title = $request->title;
-        $book->save();
+        $lending = Lending::find($id);
+        $lending->copy_id = $request->copy_id;
+        $lending->user_id = $request->user_id;
+        $lending->start = $request->start;
+        $lending->save();
     }
 
     /**
@@ -52,6 +54,6 @@ class BookController
      */
     public function destroy(string $id)
     {
-        Book::find($id)->delete();
+        Lending::find($id)->delete();
     }
 }

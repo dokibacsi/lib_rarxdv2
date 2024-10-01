@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
+use function Laravel\Prompts\password;
+
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
  */
@@ -26,6 +28,8 @@ class UserFactory extends Factory
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
+            'password' => fake()->password(6, 18),
+            'permission' => rand(0, 1),
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
         ];

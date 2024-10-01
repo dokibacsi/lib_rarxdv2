@@ -16,10 +16,9 @@ return new class extends Migration
             $table->id();
             $table->string("author");
             $table->string("title");
-            $table->integer("pieces");
             $table->timestamps();
         });
-        $book = Book::factory()->count(1000)->create();
+        $book = Book::factory()->count(100)->create();
 
         /* Book::create(["author" => "Daniel Stevenson", 'title' => 'WAU WAU WAU WAU', 'pieces' => 6000]);
         Book::create(["author" => "Hayden DeMark", 'title' => 'WTF moment', 'pieces' => 4500]);
